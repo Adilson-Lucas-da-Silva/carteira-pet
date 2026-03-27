@@ -7,4 +7,8 @@ urlpatterns = [
     path('cadastro/', views.cadastro_view, name='cadastro'),
     path('pet/cadastro/', views.cadastro_pet, name='cadastro_pet'),
     path('vacina/cadastro/', views.cadastro_vacina, name='cadastro_vacina'),
+    path('logout/', views.logout_view, name='logout'),
+    path('veterinario/cadastro/', views.cadastro_veterinario,
+         name='cadastro_veterinario'),
+
 ]
