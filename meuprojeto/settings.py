@@ -76,8 +76,16 @@ WSGI_APPLICATION = 'meuprojeto.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'carteira_pet',   # O nome do banco que você criou no Workbench
+        'USER': 'root',           # Seu usuário MySQL
+        'PASSWORD': 'amor1919',  # Sua senha MySQL
+        'HOST': 'localhost',      # Ou o IP do servidor (ex: '127.0.0.1')
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'charset': 'utf8mb4',
+        }
     }
 }
 
@@ -118,4 +126,3 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
