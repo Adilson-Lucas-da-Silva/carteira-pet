@@ -27,7 +27,14 @@ Os dados são armazenados em banco **MySQL**, com estrutura previamente definida
 
 ---
 
+## ✅ Pré-requisitos
+
+- Python instalado
+- MySQL instalado e em execução
+
 ## 📁 Estrutura do Projeto
+
+---
 
 ```
 Projeto1/
@@ -219,9 +226,9 @@ tzdata==2025.3
 
 ## 🚀 Status do Projeto
 
-✔ Funcional  
-✔ Integrado com MySQL  
-✔ Pronto para uso acadêmico  
+✔ Funcional
+✔ Integrado com MySQL
+✔ Pronto para uso acadêmico
 
 ---
 
