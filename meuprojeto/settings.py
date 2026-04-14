@@ -126,3 +126,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# As linhas abaixo dizem ao django que elas pertencem ao seu corpo. Foram criadas as pastas "static/imagens"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
