@@ -36,7 +36,7 @@ def tela_inicial(request):
     if not usuario_esta_logado(request):
         return redirect('login')
 
-    return render(request, 'tela_inicial.html')
+    return render(request, 'tela_inicial_apos_login.html')
 
 
 def login_view(request):
@@ -50,7 +50,7 @@ def login_view(request):
             # GUARDA NA SESSÃO
             request.session['usuario_id'] = usuario.id_usuario
 
-            return redirect('tela_inicial')
+            return redirect('tela_inicial_apos_login')
 
         except Usuario.DoesNotExist:
             return render(request, 'login.html', {'erro': 'Login inválido'})
@@ -133,7 +133,7 @@ def cadastro_pet(request):
             tutor=tutor
         )
 
-        return redirect('tela_inicial')
+        return redirect('tela_inicial_apos_login')
 
     return render(request, 'cadastro_pet.html', {'especies': especies})
 
@@ -169,7 +169,7 @@ def cadastro_vacina(request):
             veterinario=veterinario
         )
 
-        return redirect('tela_inicial')
+        return redirect('tela_inicial_apos_login')
 
     return render(request, 'cadastro_vacina.html', {
         'pets': pets,
@@ -206,9 +206,102 @@ def cadastro_veterinario(request):
             cep=cep
         )
 
-        return redirect('tela_inicial')
+        return redirect('tela_inicial_apos_login')
 
     return render(request, 'cadastro_veterinario.html')
+
+
+# def tela_inicial(request):
+#    return render(request, 'tela_inicial.html')
+
+
+def tela_inicial_apos_login(request):
+    if not usuario_esta_logado(request):
+        return redirect('login')
+
+    return render(request, 'tela_inicial_apos_login.html')
+
+
+def listar_vacinas(request):
+    if not usuario_esta_logado(request):
+        return redirect('login')
+
+    tutor = get_tutor_logado(request)
+
+    vacinas = Vacina.objects.filter(pet__tutor=tutor)
+
+    return render(request, 'vacinas.html', {
+        'vacinas': vacinas
+    })
+
+
+def detalhes_tutor(request):
+    if not usuario_esta_logado(request):
+        return redirect('login')
+
+    tutor = get_tutor_logado(request)
+
+    return render(request, 'detalhes_tutor.html', {
+        'tutor': tutor
+    })
+
+
+def editar_tutor(request):
+    if not usuario_esta_logado(request):
+        return redirect('login')
+
+    tutor = get_tutor_logado(request)
+
+    if request.method == 'POST':
+        tutor.tutor = request.POST.get('tutor')
+        tutor.email = request.POST.get('email')
+        tutor.celular = request.POST.get('celular')
+        tutor.telefone = request.POST.get('telefone')
+        tutor.logradouro = request.POST.get('logradouro')
+        tutor.numero_logradouro = request.POST.get('numero_logradouro')
+        tutor.complemento = request.POST.get('complemento')
+        tutor.bairro = request.POST.get('bairro')
+        tutor.cidade = request.POST.get('cidade')
+        tutor.uf = request.POST.get('uf')
+        tutor.cep = request.POST.get('cep')
+
+        tutor.save()
+
+        return redirect('detalhes_tutor')
+
+    return render(request, 'editar_tutor.html', {
+        'tutor': tutor
+    })
+
+
+def detalhes_pet(request, pet_id):
+    if not usuario_esta_logado(request):
+        return redirect('login')
+
+    tutor = get_tutor_logado(request)
+
+    # 🔒 SEGURANÇA: garante que o pet pertence ao tutor logado
+    pet = Pet.objects.get(id_pet=pet_id, tutor=tutor)
+
+    vacinas = Vacina.objects.filter(pet=pet)
+
+    return render(request, 'detalhes_pet.html', {
+        'pet': pet,
+        'vacinas': vacinas
+    })
+
+
+def meus_pets(request):
+    if not usuario_esta_logado(request):
+        return redirect('login')
+
+    tutor = get_tutor_logado(request)
+
+    pets = Pet.objects.filter(tutor=tutor)
+
+    return render(request, 'meus_pets.html', {
+        'pets': pets
+    })
 
 
 def logout_view(request):

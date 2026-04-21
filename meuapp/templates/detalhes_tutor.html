@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <title>Detalhes do Tutor</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(to right, #f8fafc, #e2e8f0);
+      min-height: 100vh;
+    }
+
+    .navbar-custom {
+      background-color: white;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .card-custom {
+      background-color: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .pet-img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-custom px-4">
+    <div class="container-fluid">
+      <span class="navbar-brand fw-bold">Carteira PET</span>
+
+      <!-- Boão de sair no canto esquerdo da navbar-->
+      <div class="ms-auto">
+        <a href="{% url 'logout' %}" class="btn btn-primary me-2">Sair</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Conteúdo principal -->
+  <div class="container py-5">
+
+    <!-- Dados do Tutor -->
+    <div class="card-custom mb-5">
+      <div class="row align-items-center">
+
+        <!-- Foto -->
+        <div class="col-md-4 text-center">
+          {% if tutor.foto %}
+          <img src="{{ tutor.foto.url }}" alt="Foto do Tutor" class="pet-img">
+          {% else %}
+          <img src="{% static 'imagens/user_full.webp' %}" alt="Foto padrão" class="pet-img">
+          {% endif %}
+        </div>
+
+        <!-- Dados -->
+        <div class="col-md-8">
+          <h3>Nome: {{ tutor.tutor }}</h3>
+          <p><strong>Email:</strong> {{ tutor.email }}</p>
+          <p><strong>Celular:</strong> {{ tutor.celular }}</p>
+          <p><strong>Telefone:</strong> {{ tutor.telefone }}</p>
+
+          <hr>
+
+          <h5>Endereço</h5>
+          <p><strong>Logradouro:</strong> {{ tutor.logradouro }}</p>
+          <p><strong>Número:</strong> {{ tutor.numero_logradouro }}</p>
+          <p><strong>Complemento:</strong> {{ tutor.complemento }}</p>
+          <p><strong>Bairro:</strong> {{ tutor.bairro }}</p>
+          <p><strong>Cidade:</strong> {{ tutor.cidade }}</p>
+          <p><strong>UF:</strong> {{ tutor.uf }}</p>
+          <p><strong>CEP:</strong> {{ tutor.cep }}</p>
+        </div>
+      </div>
+      <!-- Botões Embaico -->
+      <div class="d-flex justify-content-between mt-4">
+
+        <!-- Botão Voltar -->
+        <a href="{% url 'tela_inicial_apos_login' %}" class="btn btn-primary">
+          Voltar
+        </a>
+
+        <a href="{% url 'editar_tutor' %}" class="btn btn-primary">
+          Editar Dados
+        </a>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

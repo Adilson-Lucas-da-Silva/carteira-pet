@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Meus Pets</title>
+</head>
+
+<body>
+
+    <h2>Meus Pets</h2>
+
+    {% if pets %}
+    <ul>
+        {% for pet in pets %}
+        <li>
+            {{ pet.pet }}
+            <a href="{% url 'detalhes_pet' pet.id_pet %}">
+                Ver detalhes
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Nenhum pet cadastrado</p>
+    {% endif %}
+
+    <a href="{% url 'tela_inicial_apos_login' %}">Voltar</a>
+
+</body>
+
+</html>

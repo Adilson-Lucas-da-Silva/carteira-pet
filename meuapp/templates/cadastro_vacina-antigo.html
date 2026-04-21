@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Vacina</title>
+</head>
+
+<body>
+
+  <h2>Cadastro de Vacina</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+
+    <label>Vacina:</label><br>
+    <input type="text" name="vacina" required><br><br>
+
+    <label>Observação:</label><br>
+    <input type="text" name="obs_vacina"><br><br>
+
+    <label>Data de Aplicação:</label><br>
+    <input type="date" name="data_aplicacao" required><br><br>
+
+    <label>Pet:</label><br>
+    <select name="pet" required>
+      <option value="">Selecione</option>
+      {% for p in pets %}
+      <option value="{{ p.id_pet }}">{{ p.pet }}</option>
+      {% endfor %}
+    </select><br><br>
+
+    <label>Veterinário:</label><br>
+    <select name="veterinario" required>
+      <option value="">Selecione</option>
+      {% for v in veterinarios %}
+      <option value="{{ v.id_veterinario }}">{{ v.veterinario }}</option>
+      {% endfor %}
+    </select><br><br>
+
+    <button type="submit">Cadastrar Vacina</button>
+  </form>
+
+</body>
+
+</html>

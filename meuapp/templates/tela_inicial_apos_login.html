@@ -3,133 +3,133 @@
 
 
 <head>
-  {% load static %}
-  <meta charset="UTF-8">
-  <title>Principal</title>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Principal</title>
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <style>
-    body {
-      background: linear-gradient(to right, #f8fafc, #e2e8f0);
-      min-height: 100vh;
-    }
+    <style>
+        body {
+            background: linear-gradient(to right, #f8fafc, #e2e8f0);
+            min-height: 100vh;
+        }
 
-    .navbar-custom {
-      background-color: white;
-      border-bottom: 1px solid #ddd;
-    }
+        .navbar-custom {
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+        }
 
-    .card-link {
-      background-color: white;
-      border-radius: 20px;
-      padding: 20px;
-      min-height: 220px;
+        .card-link {
+            background-color: white;
+            border-radius: 20px;
+            padding: 20px;
+            min-height: 220px;
 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      transition: 0.3s;
-    }
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: 0.3s;
+        }
 
-    .card-link:hover {
-      transform: scale(1.05);
-    }
-  </style>
+        .card-link:hover {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-custom px-4">
-    <div class="container-fluid">
-      <span class="navbar-brand fw-bold">Carteira PET</span>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom px-4">
+        <div class="container-fluid">
+            <span class="navbar-brand fw-bold">Carteira PET</span>
 
-      <!-- Boão de sair no canto esquerdo da navbar-->
-      <div class="ms-auto">
-        <a href="#" class="btn btn-outline-primary me-2">Sair</a>
-      </div>
+            <!-- Boão de sair no canto esquerdo da navbar-->
+            <div class="ms-auto">
+                <a href="{% url 'logout' %}" class="btn btn-outline-primary me-2">Sair</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <div class="container py-5">
+
+        <h2 class="text-center mb-4">Olá, seja Bem-vindo à Carteira PET 🐾</h2>
+        <h3 class="text-center mb-4">Gerencie as vacinas do seu PET</h3>
+
+        <!-- Os 4 Cards no meio da Tela -->
+        <!-- -------------------------------------------- -->
+
+        <div class="container mt-5">
+            <div class="row">
+
+                <!-- Card: Meus PETs -->
+                <div class="col-md-6">
+                    <a href="{% url 'meus_pets' %}" class="text-decoration-none">
+                        <div class="card-link">
+                            <h4>Meus PETs</h4>
+
+                            <img src="{% static 'imagens/pata_100.png' %}" alt="Pata" class="img-fluid mt-3"
+                                style="max-height: 100px;">
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Card: Veterinarios -->
+                <div class="col-md-6">
+                    <a href="{% url 'cadastro_veterinario' %}" class="text-decoration-none">
+                        <div class="card-link">
+                            <h4>Veterinarios</h4>
+
+                            <img src="{% static 'imagens/jaleco_100.png' %}" alt="Jaleco Veterinário"
+                                class="img-fluid mt-3" style="max-height: 100px;">
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Card: Vacinas -->
+                <div class="col-md-6">
+                    <a href="{% url 'cadastro_vacina' %}" class="text-decoration-none">
+                        <div class="card-link">
+                            <h4>Vacinas</h4>
+
+                            <img src="{% static 'imagens/seringa_100.png' %}" alt="Seringa" class="img-fluid mt-3"
+                                style="max-height: 100px;">
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Tutor -->
+                <div class="col-md-6">
+                    <a href="{% url 'detalhes_tutor' %}" class="text-decoration-none">
+                        <div class="card-link">
+                            <h4>Tutor(Meus dados)</h4>
+
+                            <img src="{% static 'imagens/homem_100.png' %}" alt="Homem com cachorro"
+                                class="img-fluid mt-3" style="max-height: 100px;">
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="text-center mt-5">
+
+            <a href="{% url 'cadastro_pet' %}" class="btn btn-primary me-3">
+                Cadastrar Novo PET
+            </a>
+
+            <a href="{% url 'cadastro_vacina' %}" class="btn btn-primary">
+                Registrar Vacina
+            </a>
+
+        </div>
     </div>
-  </nav>
-
-  <!-- Conteúdo principal -->
-  <div class="container py-5">
-
-    <h2 class="text-center mb-4">Olá, seja Bem-vindo à Carteira PET 🐾</h2>
-    <h3 class="text-center mb-4">Gerencie as vacinas do seu PET</h3>
-
-    <!-- Os 4 Cards no meio da Tela -->
-    <!-- -------------------------------------------- -->
-
-    <div class="container mt-5">
-      <div class="row">
-
-        <!-- Card: Meus PETs -->
-        <div class="col-md-6">
-          <a href="/meus_pets" class="text-decoration-none">
-            <div class="card-link">
-              <h4>Meus PETs</h4>
-
-              <img src="{% static 'imagem/pata_100.png' %}" alt="Pata" class="img-fluid mt-3"
-                style="max-height: 100px;">
-            </div>
-          </a>
-        </div>
-
-        <!-- Card: Veterinarios -->
-        <div class="col-md-6">
-          <a href="/veterinarios" class="text-decoration-none">
-            <div class="card-link">
-              <h4>Veterinarios</h4>
-
-              <img src="{% static 'imagem/jaleco_100.png' %}" alt="Jaleco Veterinário" class="img-fluid mt-3"
-                style="max-height: 100px;">
-            </div>
-          </a>
-        </div>
-
-        <!-- Card: Vacinas -->
-        <div class="col-md-6">
-          <a href="/vacinas" class="text-decoration-none">
-            <div class="card-link">
-              <h4>Vacinas</h4>
-
-              <img src="{% static 'imagem/seringa_100.png' %}" alt="Seringa" class="img-fluid mt-3"
-                style="max-height: 100px;">
-            </div>
-          </a>
-        </div>
-
-        <!-- Tutor -->
-        <div class="col-md-6">
-          <a href="/tutor" class="text-decoration-none">
-            <div class="card-link">
-              <h4>Tutor(Meus dados)</h4>
-
-              <img src="{% static 'imagem/homem_100.png' %}" alt="Homem com cachorro" class="img-fluid mt-3"
-                style="max-height: 100px;">
-            </div>
-          </a>
-        </div>
-      </div>
-
-    </div>
-    <div class="text-center mt-5">
-
-      <a href="/cadastrar_pet" class="btn btn-primary me-3">
-        Cadastrar Novo PET
-      </a>
-
-      <a href="/registrar_vacina" class="btn btn-primary">
-        Registrar Vacina
-      </a>
-
-    </div>
-  </div>
 
 </body>
 
