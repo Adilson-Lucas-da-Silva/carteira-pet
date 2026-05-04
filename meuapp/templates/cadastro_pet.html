@@ -1,54 +1,136 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Cadastro de Pet</title>
+    <meta charset="UTF-8">
+    <title>Cadastro de Pet</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #f8fafc, #e2e8f0);
+            min-height: 100vh;
+        }
+
+        .navbar-custom {
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .card-custom {
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 
 <body>
 
-  <h2>Cadastro de Pet</h2>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom px-4">
+        <div class="container-fluid">
+            <span class="navbar-brand fw-bold">Carteira PET</span>
 
-  <form method="POST">
-    {% csrf_token %}
+            <div class="ms-auto">
+                <a href="{% url 'meus_pets' %}" class="btn btn-primary me-2">Voltar</a>
+                <a href="{% url 'logout' %}" class="btn btn-primary">Sair</a>
+            </div>
+        </div>
+    </nav>
 
-    <label>Nome do Pet:</label><br>
-    <input type="text" name="pet" required><br><br>
+    <!-- Conteúdo -->
+    <div class="container py-5">
 
-    <label>Raça:</label><br>
-    <input type="text" name="raca"><br><br>
+        <div class="card-custom">
 
-    <label>Sexo:</label><br>
-    <select name="sexo" required>
-      <option value="">Selecione</option>
-      <option value="M">Macho</option>
-      <option value="F">Fêmea</option>
-    </select><br><br>
+            <h3 class="mb-4">Cadastro de Pet</h3>
 
-    <label>Espécie:</label><br>
-    <select name="especie" required>
-      <option value="">Selecione</option>
-      {% for e in especies %}
-      <option value="{{ e.id_especie }}">{{ e.especie }}</option>
-      {% endfor %}
-    </select><br><br>
+            <form method="POST">
+                {% csrf_token %}
 
-    <label>Data de Nascimento:</label><br>
-    <input type="date" name="data_nascimento"><br><br>
+                <div class="row">
 
-    <label>Castrado:</label><br>
-    <select name="castrado">
-      <option value="">Selecione</option>
-      <option value="S">Sim</option>
-      <option value="N">Não</option>
-    </select><br><br>
+                    <!-- ESQUERDA -->
+                    <div class="col-md-6">
 
-    <label>Data de Castração:</label><br>
-    <input type="date" name="data_castracao"><br><br>
+                        <div class="mb-3">
+                            <label>Nome do Pet:</label>
+                            <input type="text" name="pet" class="form-control" required>
+                        </div>
 
-    <button type="submit">Cadastrar Pet</button>
-  </form>
+                        <div class="mb-3">
+                            <label>Raça:</label>
+                            <input type="text" name="raca" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Sexo:</label>
+                            <select name="sexo" class="form-control" required>
+                                <option value="">Selecione</option>
+                                <option value="M">Macho</option>
+                                <option value="F">Fêmea</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Espécie:</label>
+                            <select name="especie" class="form-control" required>
+                                <option value="">Selecione</option>
+                                {% for e in especies %}
+                                <option value="{{ e.id_especie }}">{{ e.especie }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <!-- DIREITA -->
+                    <div class="col-md-6">
+
+                        <div class="mb-3">
+                            <label>Data de Nascimento:</label>
+                            <input type="date" name="data_nascimento" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Castrado:</label>
+                            <select name="castrado" class="form-control">
+                                <option value="">Selecione</option>
+                                <option value="S">Sim</option>
+                                <option value="N">Não</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Data de Castração:</label>
+                            <input type="date" name="data_castracao" class="form-control">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- BOTÕES -->
+                <div class="d-flex gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary w-100">
+                        Cadastrar Pet
+                    </button>
+
+                    <a href="{% url 'meus_pets' %}" class="btn btn-danger w-100">
+                        Cancelar
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </body>
 

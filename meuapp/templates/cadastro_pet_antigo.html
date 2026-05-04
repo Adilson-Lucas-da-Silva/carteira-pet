@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Pet</title>
+</head>
+
+<body>
+
+  <h2>Cadastro de Pet</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+
+    <label>Nome do Pet:</label><br>
+    <input type="text" name="pet" required><br><br>
+
+    <label>Raça:</label><br>
+    <input type="text" name="raca"><br><br>
+
+    <label>Sexo:</label><br>
+    <select name="sexo" required>
+      <option value="">Selecione</option>
+      <option value="M">Macho</option>
+      <option value="F">Fêmea</option>
+    </select><br><br>
+
+    <label>Espécie:</label><br>
+    <select name="especie" required>
+      <option value="">Selecione</option>
+      {% for e in especies %}
+      <option value="{{ e.id_especie }}">{{ e.especie }}</option>
+      {% endfor %}
+    </select><br><br>
+
+    <label>Data de Nascimento:</label><br>
+    <input type="date" name="data_nascimento"><br><br>
+
+    <label>Castrado:</label><br>
+    <select name="castrado">
+      <option value="">Selecione</option>
+      <option value="S">Sim</option>
+      <option value="N">Não</option>
+    </select><br><br>
+
+    <label>Data de Castração:</label><br>
+    <input type="date" name="data_castracao"><br><br>
+
+    <button type="submit">Cadastrar Pet</button>
+  </form>
+
+</body>
+
+</html>
