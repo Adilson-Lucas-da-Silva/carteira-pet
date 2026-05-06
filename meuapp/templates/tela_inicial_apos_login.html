@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-
 <head>
     {% load static %}
     <meta charset="UTF-8">
@@ -24,12 +23,13 @@
         .card-link {
             background-color: white;
             border-radius: 20px;
-            padding: 20px;
-            min-height: 220px;
+            padding: 25px;
+            min-height: 200px;
 
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
 
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             text-align: center;
@@ -39,6 +39,18 @@
         .card-link:hover {
             transform: scale(1.05);
         }
+
+        .card-link h4 {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .acoes-rapidas {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 
@@ -47,11 +59,12 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-custom px-4">
         <div class="container-fluid">
-            <span class="navbar-brand fw-bold">Carteira PET</span>
+            <span class="navbar-brand fw-bold">Carteira PET 🐾</span>
 
-            <!-- Boão de sair no canto esquerdo da navbar-->
             <div class="ms-auto">
-                <a href="{% url 'logout' %}" class="btn btn-outline-primary me-2">Sair</a>
+                <a href="{% url 'logout' %}" class="btn btn-outline-danger">
+                    Sair
+                </a>
             </div>
         </div>
     </nav>
@@ -59,76 +72,73 @@
     <!-- Conteúdo principal -->
     <div class="container py-5">
 
-        <h2 class="text-center mb-4">Olá, seja Bem-vindo à Carteira PET 🐾</h2>
-        <h3 class="text-center mb-4">Gerencie as vacinas do seu PET</h3>
+        <!-- Título -->
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Bem-vindo 👋</h2>
+            <p class="text-muted">Gerencie seus pets, vacinas e dados de forma simples</p>
+        </div>
 
-        <!-- Os 4 Cards no meio da Tela -->
-        <!-- -------------------------------------------- -->
+        <!-- AÇÕES RÁPIDAS (destaque) -->
+        <div class="acoes-rapidas mb-5 text-center">
+            <h5 class="mb-3">Ações rápidas</h5>
 
-        <div class="container mt-5">
-            <div class="row">
+            <a href="{% url 'cadastro_pet' %}" class="btn btn-primary btn-lg">
+                + Novo PET
+            </a>
 
-                <!-- Card: Meus PETs -->
-                <div class="col-md-6">
-                    <a href="{% url 'meus_pets' %}" class="text-decoration-none">
-                        <div class="card-link">
-                            <h4>Meus PETs</h4>
+            <a href="{% url 'cadastro_vacina' %}" class="btn btn-success btn-lg">
+                + Registrar Vacina
+            </a>
+            <a href="/dashboard" class="btn btn-dark btn-lg">
+                📊 Dashboard
+            </a>
+        </div>
 
-                            <img src="{% static 'imagens/pata_100.png' %}" alt="Pata" class="img-fluid mt-3"
-                                style="max-height: 100px;">
-                        </div>
-                    </a>
-                </div>
+        <!-- Cards principais -->
+        <div class="row g-4">
 
-                <!-- Card: Veterinarios -->
-                <div class="col-md-6">
-                    <a href="{% url 'cadastro_veterinario' %}" class="text-decoration-none">
-                        <div class="card-link">
-                            <h4>Veterinarios</h4>
+            <!-- Meus PETs -->
+            <div class="col-md-6">
+                <a href="{% url 'meus_pets' %}" class="text-decoration-none">
+                    <div class="card-link">
+                        <h4>Meus PETs</h4>
+                        <img src="{% static 'imagens/pata_100.png' %}" class="img-fluid" style="max-height: 90px;">
+                    </div>
+                </a>
+            </div>
 
-                            <img src="{% static 'imagens/jaleco_100.png' %}" alt="Jaleco Veterinário"
-                                class="img-fluid mt-3" style="max-height: 100px;">
-                        </div>
-                    </a>
-                </div>
+            <!-- Vacinas -->
+            <div class="col-md-6">
+                <a href="{% url 'cadastro_vacina' %}" class="text-decoration-none">
+                    <div class="card-link">
+                        <h4>Vacinas</h4>
+                        <img src="{% static 'imagens/seringa_100.png' %}" class="img-fluid" style="max-height: 90px;">
+                    </div>
+                </a>
+            </div>
 
-                <!-- Card: Vacinas -->
-                <div class="col-md-6">
-                    <a href="{% url 'cadastro_vacina' %}" class="text-decoration-none">
-                        <div class="card-link">
-                            <h4>Vacinas</h4>
+            <!-- Veterinários -->
+            <div class="col-md-6">
+                <a href="{% url 'cadastro_veterinario' %}" class="text-decoration-none">
+                    <div class="card-link">
+                        <h4>Veterinários</h4>
+                        <img src="{% static 'imagens/jaleco_100.png' %}" class="img-fluid" style="max-height: 90px;">
+                    </div>
+                </a>
+            </div>
 
-                            <img src="{% static 'imagens/seringa_100.png' %}" alt="Seringa" class="img-fluid mt-3"
-                                style="max-height: 100px;">
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Tutor -->
-                <div class="col-md-6">
-                    <a href="{% url 'detalhes_tutor' %}" class="text-decoration-none">
-                        <div class="card-link">
-                            <h4>Tutor(Meus dados)</h4>
-
-                            <img src="{% static 'imagens/homem_100.png' %}" alt="Homem com cachorro"
-                                class="img-fluid mt-3" style="max-height: 100px;">
-                        </div>
-                    </a>
-                </div>
+            <!-- Tutor -->
+            <div class="col-md-6">
+                <a href="{% url 'detalhes_tutor' %}" class="text-decoration-none">
+                    <div class="card-link">
+                        <h4>Meus Dados</h4>
+                        <img src="{% static 'imagens/homem_100.png' %}" class="img-fluid" style="max-height: 90px;">
+                    </div>
+                </a>
             </div>
 
         </div>
-        <div class="text-center mt-5">
 
-            <a href="{% url 'cadastro_pet' %}" class="btn btn-primary me-3">
-                Cadastrar Novo PET
-            </a>
-
-            <a href="{% url 'cadastro_vacina' %}" class="btn btn-primary">
-                Registrar Vacina
-            </a>
-
-        </div>
     </div>
 
 </body>
